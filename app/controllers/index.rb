@@ -1,4 +1,4 @@
-
+enable :sessions
 
 # GET ========================================
 
@@ -14,15 +14,23 @@ get '/card/:card_id' do
 end
 
 get '/account/summary/:id' do
+
   erb :summary
 end
 
-get '/account/:id' do
-  #if session cookie == :id
-   # go to taht user's page
-   #else
-   #redirect to index
+
+get '/account/profile/:id' do
+  if session[:id] != params[:id].to_i
+    redirect '/'
+  end
+  erb :profile
 end
+
+get '/logout' do
+  session[:id] = nil
+  redirect '/'
+end
+
 
 
 
@@ -30,16 +38,25 @@ end
 
 
 post '/account' do
-  
-    redirect "/account/#{user.id}"
+  if User.validate(params[:user][:email], params[:user][:password])
+    @user = User.find_by_email(params[:user][:email])
+    session[:id] = @user.id
+    redirect "/account/profile/#{@user.id}"
+  else
+    redirect '/'
+  end
 end
 
 post '/create' do
-  # Validate and create a new user
-  # Set a session value to user's id
-  # if User.create.errors.any?
-  #   # iterate
-  # else
-# end
-  redirect "/account/#{user.id}"
+  if verify_password(params[:create][:password],
+                     params[:verify][:password])
+    @user = User.create(params[:create])
+    session[:id] = @user.id
+    redirect "/account/profile/#{@user.id}"
+  else
+    redirect '/'
+  end
+end
+
+post '/round' do
 end

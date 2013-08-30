@@ -1,13 +1,15 @@
-<nav>
-  <a href="/html/">Home</a>
-  <a href="/account"
-  <a href="/css/">Logout</a>
-</nav>
-
+<%= erb :_navbar %>
 
 <div class="trebek">
 </div>
 
 <div class="card-info">
-  <p>Correct!</p>
+  <p class="answer-eval">Correct!</p>
+</div>
+
+<div class="guess">
+  <form id="guess" action="/round" method="POST">
+    <input type="text" name="guess" placeholder="Enter answer">
+    <input type="Submit">
+  </form>
 </div>

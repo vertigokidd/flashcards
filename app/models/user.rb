@@ -4,5 +4,16 @@ class User < ActiveRecord::Base
   validates :name, :email, :password, presence: true  
   validates :password, length: {minimum: 8}
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}, uniqueness: true
-    
+
+
+  def self.validate(email, password)
+    user = self.find_by_email(email)
+    if user == nil
+      return false
+    else
+      return user.password == password
+    end
+  end
+
+
 end

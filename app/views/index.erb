@@ -8,7 +8,7 @@
     <input id="email" type="text" name="user[email]">
 
     <label for="password">Password</label>
-    <input id="password" type="text" name="user[password]">
+    <input id="password" type="password" name="user[password]">
 
     <input type="Submit" id="login"value="Login">
   </form>
@@ -16,15 +16,18 @@
 
   <div class="form">
   <h2>Create account</h2>
-  <form id="login_user" action="/account" method="POST">
+  <form id="login_user" action="/create" method="POST">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="create[name]">
+
     <label for="email">Email</label>
     <input id="email" type="text" name="create[email]">
 
     <label for="password">Password</label>
-    <input id="password" type="text" name="create[password]">
+    <input id="password" type="password" name="create[password]">
 
     <label for="confirm_password">Confirm password</label>
-    <input id="confirm_password" type="text" name="create[password_verify]">
+    <input id="confirm_password" type="password" name="verify[password]">
 
     <input type="Submit" id="create" value="Create Account">
   </form>
