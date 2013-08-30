@@ -30,12 +30,16 @@ end
 
 
 post '/account' do
-
-  redirect "/account/#{user.id}"
+  
+    redirect "/account/#{user.id}"
 end
 
 post '/create' do
   # Validate and create a new user
   # Set a session value to user's id
+  # if User.create.errors.any?
+  #   # iterate
+  # else
+# end
   redirect "/account/#{user.id}"
 end
