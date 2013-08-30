@@ -16,7 +16,7 @@
 
   <div class="form">
   <h2>Create account</h2>
-  <form id="login_user" action="/account" method="POST">
+  <form id="login_user" action="/create" method="POST">
     <label for="email">Email</label>
     <input id="email" type="text" name="create[email]">
 
@@ -24,7 +24,7 @@
     <input id="password" type="text" name="create[password]">
 
     <label for="confirm_password">Confirm password</label>
-    <input id="confirm_password" type="text" name="create[password_verify]">
+    <input id="confirm_password" type="text" name="verify[password]">
 
     <input type="Submit" id="create" value="Create Account">
   </form>

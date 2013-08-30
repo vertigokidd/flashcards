@@ -10,4 +10,9 @@ helpers do
   def logged_in?
     !current_user.nil?
   end
+
+  def verify_password(password, verification)
+    password == verification
+  end
+
 end
