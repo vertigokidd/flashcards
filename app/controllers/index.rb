@@ -14,14 +14,14 @@ get '/card/:card_id' do
 end
 
 get '/account/summary/:id' do
+
   erb :summary
 end
 
+
 get '/account/profile/:id' do
-  if session[:id] == params[:id]
-   # go to taht user's page
-  else
-   redirect '/'
+  if session[:id] != params[:id].to_i
+    redirect '/'
   end
   erb :profile
 end
@@ -36,9 +36,13 @@ end
 
 
 post '/account' do
-  if
-
-  redirect "/account/profile/#{user.id}"
+  if User.validate(params[:user][:email], params[:user][:password])
+    @user = User.find_by_email(params[:user][:email])
+    session[:id] = @user.id
+    redirect "/account/profile/#{@user.id}"
+  else
+    redirect '/'
+  end
 end
 
 post '/create' do
