@@ -1,4 +1,4 @@
-
+enable :sessions
 
 # GET ========================================
 
@@ -17,28 +17,36 @@ get '/account/summary/:id' do
   erb :summary
 end
 
-get '/account/:id' do
-  #if session cookie == :id
+get '/account/profile/:id' do
+  if session[:id] == params[:id]
    # go to taht user's page
-   #else
-   #redirect to index
+  else
+   redirect '/'
+  end
+  erb :profile
 end
 
+get '/logout' do
+  session[:id] = nil
+  redirect '/'
+end
 
 
 # POST =======================================
 
 
-# post '/account' do
+post '/account' do
+  if
 
-#   redirect "/account/#{user.id}"
-# end
+  redirect "/account/profile/#{user.id}"
+end
 
 post '/create' do
   if verify_password(params[:create][:password],
                      params[:verify][:password])
     @user = User.create(params[:create])
-    redirect "/account/#{user.id}"
+    session[:id] = @user.id
+    redirect "/account/profile/#{@user.id}"
   else
     redirect '/'
   # Validate and create a new user
