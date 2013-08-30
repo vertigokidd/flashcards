@@ -55,12 +55,9 @@ post '/create' do
     redirect "/account/profile/#{@user.id}"
   else
     redirect '/'
-  # Validate and create a new user
-  # Set a session value to user's id
   end
 end
 
 post '/round' do
-
 
 end
