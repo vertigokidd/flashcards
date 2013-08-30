@@ -23,6 +23,7 @@ get '/account/profile/:id' do
   if session[:id] != params[:id].to_i
     redirect '/'
   end
+  @user = User.find(params[:id])
   erb :profile
 end
 
@@ -51,12 +52,16 @@ post '/create' do
   if verify_password(params[:create][:password],
                      params[:verify][:password])
     @user = User.create(params[:create])
-    session[:id] = @user.id
-    redirect "/account/profile/#{@user.id}"
-  else
+      if @user.errors.any?
+        # redirect to '/'
+        # erb :index
+        # break
+        erb :index 
+      else
+        session[:id] = @user.id
+        redirect "/account/profile/#{@user.id}"
+      end
+    else
     redirect '/'
   end
-end
-
-post '/round' do
 end
