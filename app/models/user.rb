@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   # Remember to create a migration!
-  validates :name, :email, :password, presence: true 
   has_many :rounds
+  validates :name, :email, :password, presence: true  
+  validates :password, length: {minimum: 8}
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}, uniqueness: true
+
 
   def self.validate(email, password)
     user = self.find_by_email(email)
@@ -11,5 +14,6 @@ class User < ActiveRecord::Base
       return user.password == password
     end
   end
+
 
 end
