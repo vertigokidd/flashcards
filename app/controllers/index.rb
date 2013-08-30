@@ -77,7 +77,9 @@ end
 
 
 
+post '/round' do
+  deck = Deck.find(params[:deck])
 
-
+end
 
 
