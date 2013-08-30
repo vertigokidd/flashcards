@@ -18,11 +18,18 @@ get '/account/summary/:id' do
   erb :summary
 end
 
+get '/round/:deck_id' do
+  deck = Deck.find(params[:deck_id]).cards
+  @deck = deck.shuffle
+  erb :card
+end
+
 
 get '/account/profile/:id' do
   if session[:id] != params[:id].to_i
     redirect '/'
   end
+  @decks = Deck.all
   erb :profile
 end
 
@@ -58,6 +65,19 @@ post '/create' do
   end
 end
 
-post '/round' do
 
-end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
