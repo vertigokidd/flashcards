@@ -10,12 +10,15 @@ h1, h2, h3, h4 {
 .container {
   margin: 20px auto;
   width: 750px;
-  padding: 0px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
   border: 1px dotted black;
 }
 
 #login, #create {
-  width: 45%;
+  width: 50%;
+  height: 2em;
+  line-height: 2em;
+  font-weight: bold;
 }
 
 label {
@@ -25,8 +28,7 @@ label {
 
 .trebek {
   content:url('/alex-trebek.png');
-/*  z-index:-1;
-*/  width:750px;
+  width:750px;
   height:500px;
 }
 

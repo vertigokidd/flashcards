@@ -1,3 +1,5 @@
+
+
 # GET ========================================
 
 
@@ -7,18 +9,20 @@ get '/' do
 end
 
 
+get '/card/:card_id' do
+  erb :card
+end
+
+get '/account/summary/:id' do
+  erb :summary
+end
+
 get '/account/:id' do
   #if session cookie == :id
    # go to taht user's page
    #else
    #redirect to index
 end
-
-
-get '/card/:card_id' do
-  erb :card
-end
-
 
 
 
