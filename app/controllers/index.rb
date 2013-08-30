@@ -32,6 +32,8 @@ get '/logout' do
 end
 
 
+
+
 # POST =======================================
 
 
@@ -56,4 +58,8 @@ post '/create' do
   # Validate and create a new user
   # Set a session value to user's id
   end
+end
+
+post '/round' do
+
 end

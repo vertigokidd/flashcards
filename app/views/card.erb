@@ -4,6 +4,12 @@
 </div>
 
 <div class="card-info">
-  <p>Correct!</p>
-  <form id="guess" action="/"
+  <p class="answer-eval">Correct!</p>
+</div>
+
+<div class="guess">
+  <form id="guess" action="/round" method="POST">
+    <input type="text" name="guess" placeholder="Enter answer">
+    <input type="Submit">
+  </form>
 </div>
