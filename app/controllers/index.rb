@@ -29,13 +29,19 @@ end
 # POST =======================================
 
 
-post '/account' do
+# post '/account' do
 
-  redirect "/account/#{user.id}"
-end
+#   redirect "/account/#{user.id}"
+# end
 
 post '/create' do
+  if verify_password(params[:create][:password],
+                     params[:verify][:password])
+    @user = User.create(params[:create])
+    redirect "/account/#{user.id}"
+  else
+    redirect '/'
   # Validate and create a new user
   # Set a session value to user's id
-  redirect "/account/#{user.id}"
+  end
 end
