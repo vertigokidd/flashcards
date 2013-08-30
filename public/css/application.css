@@ -40,6 +40,12 @@ label {
   font-size:1.4em;
 }
 
+.guess {
+  position:absolute;
+  left:625px;
+  top:450px;
+}
+
 .form {
    width: 40%;
    clear: both;
