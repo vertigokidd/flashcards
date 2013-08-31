@@ -20,7 +20,9 @@ end
 
 get '/round/:deck_id' do
   deck = Deck.find(params[:deck_id]).cards
-  @deck = deck.shuffle
+  @card = deck.shuffle.first
+  round = Round.create(user_id: session[:id], deck_id: params[:deck_id])
+  session[:round] = round.id
   erb :card
 end
 
@@ -78,7 +80,23 @@ end
 
 
 post '/round' do
-  deck = Deck.find(params[:deck])
+  session[:round]
+  params[:guess]
+  params[:card_id]
+  p session[:round]
+  round = Round.find(session[:round])
+  if params[:guess].downcase == Card.find(params[:card_id]).answer.downcase
+    round.update_stats(1, 1)
+  else
+    round.update_stats(1, 0)
+  end
+
+    #LOGIC HERE
+  # Takes the deck
+  # Checks to see what round it is
+  # Checks what cards have been displayed this round
+  # Only displays cards that are left
+
 
 end
 
