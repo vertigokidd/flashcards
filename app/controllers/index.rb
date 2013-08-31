@@ -62,7 +62,7 @@ post '/create' do
                      params[:verify][:password])
     @user = User.create(params[:create])
       if @user.errors.any?
-        erb :index 
+        erb :index
       else
         session[:id] = @user.id
         redirect "/account/profile/#{@user.id}"
@@ -89,13 +89,25 @@ post '/round' do
   session[:round]
   params[:guess]
   params[:card_id]
-  p session[:round]
   round = Round.find(session[:round])
+  current_deck_id = Card.find_by_id(params[:card_id].to_i).deck_id
   if params[:guess].downcase == Card.find(params[:card_id]).answer.downcase
     round.update_stats(1, 1)
+
   else
     round.update_stats(1, 0)
   end
+
+  deck = Card.where(deck_id: current_deck_id)
+  @card = deck.sample
+  p @card
+  erb :card
+
+  # if cards remain
+  #   erb :card
+  # else
+  #   erb summary
+  # end
 
     #LOGIC HERE
   # Takes the deck
