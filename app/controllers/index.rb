@@ -53,9 +53,6 @@ post '/create' do
                      params[:verify][:password])
     @user = User.create(params[:create])
       if @user.errors.any?
-        # redirect to '/'
-        # erb :index
-        # break
         erb :index 
       else
         session[:id] = @user.id
