@@ -7,4 +7,5 @@ require 'CSV'
 
 # CSV.foreach('cards.csv') do |row|
 #   deck.cards << Card.create!(:question => row[1], :answer => row[0])
-# end     
+# end
+     
