@@ -1,2 +1,6 @@
 <%= erb :_navbar %>
 <h1>Your Account!</h1>
+
+<% @decks.each do |item| %>
+  <a href="/round/<%=item.id%>" name="<%=item.id%>"><%=item.name%></a>
+<% end %>

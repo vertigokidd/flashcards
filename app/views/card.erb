@@ -2,15 +2,16 @@
 
 <div class="trebek">
 </div>
-
 <div class="card-info">
+  <div class ="question"><%= @card.question %></div>
   <div id="incorrect" class="answer-eval"></div>
-  <div id="correct" class="answer-eval">Correct!</div>
+  <div id="correct" class="answer-eval"></div>
 </div>
 
 <div class="guess">
   <form id="guess" action="/round" method="POST">
     <input type="text" name="guess" placeholder="Enter answer">
+    <input type="hidden" name="card_id" value="<%=@card.id %>">
     <input type="Submit">
   </form>
 </div>
