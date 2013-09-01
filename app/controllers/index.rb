@@ -5,7 +5,11 @@ enable :sessions
 
 get '/' do
   # Look in app/views/index.erb
-  erb :index
+  if session[:id].nil?
+    erb :index
+  else
+    redirect "/account/profile/#{session[:id]}"
+  end
 end
 
 
@@ -80,11 +84,13 @@ post '/round' do
   card_id_array = Deck.find(current_deck_id).cards.map { |card| card.id }
   if params[:guess].downcase == Card.find(params[:card_id]).answer.downcase
     round.update_stats(1, 1)
-    Guess.create(round_id: round.id, card_id: params[:card_id].to_i, correctness: true)
+    guess = Guess.create(round_id: round.id, card_id: params[:card_id].to_i, correctness: true)
   else
     round.update_stats(1, 0)
-    Guess.create(round_id: round.id, card_id: params[:card_id].to_i, correctness: false)
+    guess = Guess.create(round_id: round.id, card_id: params[:card_id].to_i, correctness: false)
   end
+
+
 
   used_card_array = Guess.where(round_id: round.id).map { |card| card.card_id }
   remaining_cards = card_id_array - used_card_array

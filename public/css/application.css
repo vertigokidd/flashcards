@@ -8,10 +8,9 @@ h1, h2, h3, h4 {
 }
 
 .container {
-  margin: 20px auto;
+  margin: 20px;
   width: 750px;
   padding: 20px 20px 20px 20px;
-  border: 2px solid #ccc;
 }
 
 #login, #create {
@@ -34,7 +33,7 @@ label {
 
 .card-info {
   position:absolute;
-  left:625px;
+  left:400px;
   top:150px;
   max-width:275px;
   font-size:1.4em;
@@ -54,16 +53,18 @@ label {
 
  #correct {
   color: green;
+  display:none;
 }
 
  #incorrect {
   color: red;
+  display:none;
 }
 
 
 .guess {
   position:absolute;
-  left:625px;
+  left:400px;
   top:450px;
 }
 
@@ -79,20 +80,25 @@ label {
     }
 
 table {
-  margin: 10px;
+
 }
 
-table, tr:first-child th {
-border: 1px solid black;
-
+td {
+  padding:15px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
 }
 
 
 th {
+  font-size: 1.1em;
   text-align: center;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-right: 10px;
+  padding: 10px;
+  border-bottom: 2px solid #ccc;
+}
+
+.question-summary {
+  text-align: left;
 }
 
 .navbar {

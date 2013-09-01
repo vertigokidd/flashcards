@@ -1,10 +1,7 @@
 <%= erb :_navbar %>
-<h1>Your Account!</h1>
+<h2>Hi there, <%= User.find(session[:id]).name %>!</h2>
 
-
-  <h3>Name: <%= @user.name %></h3>
-  <h3>Username: <%= @user.email %></h3>
-  <h3>Available Decks:</h3>
+  <p>Available Decks:</p>
   <table>
     <ul>
         <% @decks.each do |item| %>
@@ -23,15 +20,15 @@
 
   </tr>
   <tr>
-      <%@rounds.each do |round|%>
-      <th><%=round.created_at.to_s(:short)%></th>
-      <th><%= Deck.find(round.deck_id).name%></th>
-      <th><%=round.number_correct%></th>
-      <th><%=round.number_guessed - round.number_correct%></th>
+      <%@rounds.order('created_at DESC').limit(10).each do |round|%>
+      <td><%=round.created_at.to_s(:short)%></td>
+      <td><%= Deck.find(round.deck_id).name%></td>
+      <td><%=round.number_correct%></td>
+      <td><%=round.number_guessed - round.number_correct%></td>
       <% if round.number_correct == 0 || round.number_guessed == 0 %>
-      <th><%= 0 %></th>
+      <td><%= 0 %></td>
       <% else %>
-      <th><%= ((round.number_correct.to_f/round.number_guessed.to_f)*100).to_s + "%" %></th>
+      <td><%= ((round.number_correct.to_f/round.number_guessed.to_f)*100).round(2).to_s + "%" %></td>
       <%end%>
   </tr>     <%end%>
 </table>

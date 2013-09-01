@@ -1,6 +1,22 @@
 <%= erb :_navbar %>
 <h1>Your Flashcards with Trebek summary</h1>
 <div>
-  <  <p><%=:name%></p>
-
+  <% round = Round.find(session[:round]) %>
+  <p>Number Correct: <%=round.number_correct %></p>
+  <p>Number Wrong: <%= round.number_guessed - round.number_correct %></p>
+  <p>Perecentage <%= ((round.number_correct.to_f/round.number_guessed.to_f)*100).round(2).to_s + "%" %></p>
+  <table>
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Correct?</th>
+    </tr>
+    <% round.guesses.order("card_id").each do |guess| %>
+      <tr>
+        <td class="question-summary"><%= Card.find(guess.card_id).question %></td>
+        <td><%= Card.find(guess.card_id).answer %></td>
+        <td><%= guess.correctness %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
