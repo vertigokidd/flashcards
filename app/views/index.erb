@@ -1,5 +1,9 @@
 
-  <h1>Trebekards</h1>
+<!--   <h1>Trebekards</h1> -->
+
+<div class="homepage">
+
+</div>
 
   <div class="form">
   <h2>Login</h2>
@@ -14,13 +18,13 @@
   </form>
   </div>
 
-  <div class="form">
+  <div class="new_form">
   <h2>Create account</h2>
   <tr>
   <td>
     <% if @user %>
       <% @user.errors.messages.each do |error, value| %>
-          <p><%= error %> <%= value[0] %></p>
+          <p class="errors"><%= error.capitalize %> <%= value[0] %>.</p>
       <% end %>
     <% end %>
   </td>

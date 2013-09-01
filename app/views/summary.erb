@@ -1,7 +1,10 @@
 <%= erb :_navbar %>
-<h1>Your Flashcards with Trebek summary</h1>
+
+<% round = Round.find(session[:round]) %>
+
+<h2><%= Deck.find(round.deck_id).name.capitalize %> Trebekards round summary</h2>
+
 <div>
-  <% round = Round.find(session[:round]) %>
   <p>Number Correct: <%=round.number_correct %></p>
   <p>Number Wrong: <%= round.number_guessed - round.number_correct %></p>
   <p>Perecentage <%= ((round.number_correct.to_f/round.number_guessed.to_f)*100).round(2).to_s + "%" %></p>

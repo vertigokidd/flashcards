@@ -1,14 +1,20 @@
 <%= erb :_navbar %>
+<div class="photo-frame">
+<img class="summary-pic" src='/summary.png'>
+</div>
+<div class="greeting">
 <h2>Hi there, <%= User.find(session[:id]).name %>!</h2>
 
-  <p>Available Decks:</p>
+  <p>Are you ready to play Trebekards? Select a deck:</p>
   <table>
     <ul>
         <% @decks.each do |item| %>
-    <li><a href="/round/<%=item.id%>" name="<%=item.id%>"><%=item.name%></a></li><br>
+    <li><a href="/round/<%=item.id%>" name="<%=item.id%>"><%=item.name.capitalize %></a></li><br>
   <% end %>
     </ul>
   </table>
+</div>
+<div class="history">
    <h3>Game History</h3>
 <table>
   <tr>
@@ -22,7 +28,7 @@
   <tr>
       <%@rounds.order('created_at DESC').limit(10).each do |round|%>
       <td><%=round.created_at.to_s(:short)%></td>
-      <td><%= Deck.find(round.deck_id).name%></td>
+      <td><%= Deck.find(round.deck_id).name.capitalize %></td>
       <td><%=round.number_correct%></td>
       <td><%=round.number_guessed - round.number_correct%></td>
       <% if round.number_correct == 0 || round.number_guessed == 0 %>
@@ -32,4 +38,5 @@
       <%end%>
   </tr>     <%end%>
 </table>
+</div>
 

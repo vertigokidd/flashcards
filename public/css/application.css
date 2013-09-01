@@ -1,10 +1,11 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 100%;
+  color: #464646;
 }
 
 h1, h2, h3, h4 {
-  font-family: Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -13,11 +14,42 @@ h1, h2, h3, h4 {
   padding: 20px 20px 20px 20px;
 }
 
+.homepage {
+  content:url('/homepage.png');
+  position: absolute;
+  top: 0;
+  left: 0px;
+}
+
+.summary-pic {
+  margin-top:0px;
+  width:200px;
+  height: auto;
+}
+
+.photo-frame {
+  display:inline-block;
+  margin-top:0px;
+  width:200px;
+  height: auto;
+}
+
+/*.history {
+  postion:relative;
+  margin:0px 0 0 0;
+}*/
+
 #login, #create {
   width: 50%;
   height: 2em;
   line-height: 2em;
   font-weight: bold;
+}
+
+.greeting {
+  display:inline-block;
+  position:absolute;
+  margin:30px 10px 10px 40px;
 }
 
 label {
@@ -56,7 +88,7 @@ label {
   color: green;
 }
 
-.incorrect {
+.incorrect, .errors {
   color: red;
 }
 
@@ -69,10 +101,19 @@ label {
 
 .form {
    width: 40%;
-   clear: both;
+/*   clear: both;*/
+   position:absolute;
+   top:135px;
     }
 
-.form input {
+.new_form {
+  width: 40%;
+/*   clear: both;*/
+   position:absolute;
+   top:365px;
+}
+
+.form input, .new_form input {
     width: 100%;
     clear: both;
     margin: 8px 0 8px 0;
@@ -101,8 +142,17 @@ th {
 }
 
 .navbar {
-  margin-bottom: 15px;
-  float:right;
+  padding: 4px 0 0 20px;
+  margin: 0;
+  background-color: #464646;
+  height: 36px;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  line-height: 32px;
 }
 
 .small-header {
@@ -114,14 +164,13 @@ th {
 
 .navbar a {
   padding: 5px;
-  border: solid #aaa 2px;
-  margin-left: 10px;
+  /*border: solid #aaa 2px;*/
+  margin-left: 6px;
   text-decoration: none;
-  color: black;
-  background-color: #ccc;
+  color: #fff;
+  /*background-color: #ccc;*/
 }
 
 .navbar a:hover {
-  color: #fff;
-  background-color: #aaa;
+  color: #ccc;
 }
