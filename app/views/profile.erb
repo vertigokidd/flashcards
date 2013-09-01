@@ -2,14 +2,37 @@
 <h1>Your Account!</h1>
 
 
-<% @decks.each do |item| %>
-  <a href="/round/<%=item.id%>" name="<%=item.id%>"><%=item.name%></a>
-<% end %>
+  <h3>Name: <%= @user.name %></h3>
+  <h3>Username: <%= @user.email %></h3>
+  <h3>Available Decks:</h3>
+  <table>
+    <ul>
+        <% @decks.each do |item| %>
+    <li><a href="/round/<%=item.id%>" name="<%=item.id%>"><%=item.name%></a></li><br>
+  <% end %>
+    </ul>
+  </table>
+   <h3>Game History</h3>
+<table>
+  <tr>
+      <th>Game Time</th>
+      <th>Deck</th>
+      <th>Correct</th>
+      <th>Incorrect</th>
+      <th>Percentage</th>
 
-<td>
-  <tr>Name: <%= @user.name %></tr><br>
-  <tr>Username: <%= @user.email %></tr>
-  
-
-</td>  
+  </tr>
+  <tr>
+      <%@rounds.each do |round|%>
+      <th><%=round.created_at.to_s(:short)%></th>
+      <th><%= Deck.find(round.deck_id).name%></th>
+      <th><%=round.number_correct%></th>
+      <th><%=round.number_guessed - round.number_correct%></th>
+      <% if round.number_correct == 0 || round.number_guessed == 0 %>
+      <th><%= 0 %></th>
+      <% else %>
+      <th><%= ((round.number_correct.to_f/round.number_guessed.to_f)*100).to_s + "%" %></th>
+      <%end%>
+  </tr>     <%end%>
+</table>
 

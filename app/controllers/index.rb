@@ -33,6 +33,7 @@ get '/account/profile/:id' do
   end
   @decks = Deck.all
   @user = User.find(params[:id])
+  @rounds = @user.rounds
   erb :profile
 end
 
@@ -72,49 +73,28 @@ post '/create' do
   end
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 post '/round' do
-  session[:round]
-  params[:guess]
-  params[:card_id]
+
   round = Round.find(session[:round])
   current_deck_id = Card.find_by_id(params[:card_id].to_i).deck_id
+  card_id_array = Deck.find(current_deck_id).cards.map { |card| card.id }
   if params[:guess].downcase == Card.find(params[:card_id]).answer.downcase
     round.update_stats(1, 1)
-
+    Guess.create(round_id: round.id, card_id: params[:card_id].to_i, correctness: true)
   else
     round.update_stats(1, 0)
+    Guess.create(round_id: round.id, card_id: params[:card_id].to_i, correctness: false)
   end
 
-  deck = Card.where(deck_id: current_deck_id)
-  @card = deck.sample
-  p @card
-  erb :card
+  used_card_array = Guess.where(round_id: round.id).map { |card| card.card_id }
+  remaining_cards = card_id_array - used_card_array
 
-  # if cards remain
-  #   erb :card
-  # else
-  #   erb summary
-  # end
-
-    #LOGIC HERE
-  # Takes the deck
-  # Checks to see what round it is
-  # Checks what cards have been displayed this round
-  # Only displays cards that are left
-
+  if remaining_cards.empty?
+    redirect "/account/summary/#{session[:id]}"
+  else
+    @card = Card.find(remaining_cards.sample)
+    erb :card
+  end
 
 end
 

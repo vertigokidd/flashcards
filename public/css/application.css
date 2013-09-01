@@ -78,8 +78,21 @@ label {
     margin: 8px 0 8px 0;
     }
 
+table {
+  margin: 10px;
+}
+
+table, tr:first-child th {
+border: 1px solid black;
+
+}
+
+
 th {
-  text-align: left;
+  text-align: center;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
 }
 
 .navbar {
