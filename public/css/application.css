@@ -84,6 +84,18 @@ label {
   display:none;
 }
 
+#timer{
+  position: absolute;
+  top: 90px;
+  left: 700px;
+  color: white;
+  font-size: 2em;
+}
+
+div .red{
+  color: red;
+}
+
 .correct {
   color: green;
 }
@@ -118,6 +130,8 @@ label {
     clear: both;
     margin: 8px 0 8px 0;
     }
+
+
 
 table {
 

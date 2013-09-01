@@ -1,3 +1,5 @@
+seconds = []
+
 function colorizer(input) {
   if (input == "Correct!") {
     $("#answer-eval").addClass("correct");
@@ -6,6 +8,30 @@ function colorizer(input) {
   };
 }
 
+function loadTimer(){
+  for(i=0; i < 15; i++){
+    seconds.push(i);
+  }
+}
+
+
+function startTimer() {
+
+  currentSecond = seconds.pop();
+
+  $('#timer').text(currentSecond);
+
+  if (currentSecond <=10) {
+    $('#timer').addClass('red');
+  };
+
+  if(seconds.length == 0){
+    $('#answer_button').click();
+  }
+  else{
+    window.setTimeout(startTimer,1000);
+  }
+}
 
 
 $(document).ready(function() {
@@ -16,4 +42,14 @@ $(document).ready(function() {
   $("#answer-eval").show(1000).fadeOut(1000);
   result = $('#answer-eval').data("result");
   colorizer(result);
+
+  loadTimer();
+
+
+  window.setTimeout(startTimer,2000);
+  // startTimer(seconds);
 });
+
+
+
+
