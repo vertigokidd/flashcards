@@ -85,11 +85,12 @@ post '/round' do
   if params[:guess].downcase == Card.find(params[:card_id]).answer.downcase
     round.update_stats(1, 1)
     guess = Guess.create(round_id: round.id, card_id: params[:card_id].to_i, correctness: true)
+    @result =  "Correct!"
   else
     round.update_stats(1, 0)
     guess = Guess.create(round_id: round.id, card_id: params[:card_id].to_i, correctness: false)
+    @result = "Incorrect!"
   end
-
 
 
   used_card_array = Guess.where(round_id: round.id).map { |card| card.card_id }

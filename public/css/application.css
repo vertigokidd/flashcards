@@ -44,21 +44,20 @@ label {
   font-size: .80em;
 }
 
-.answer-eval {
+#answer-eval {
   margin-top: 105px;
   margin-left: 65px;
   font-weight: bold;
   font-size:  1.2em;
+  display:none;
 }
 
- #correct {
+.correct {
   color: green;
-  display:none;
 }
 
- #incorrect {
+.incorrect {
   color: red;
-  display:none;
 }
 
 
