@@ -21,8 +21,10 @@ function startTimer() {
 
   $('#timer').text(currentSecond);
 
-  if (currentSecond <=10) {
+  if (currentSecond <=5) {
     $('#timer').addClass('red');
+    $('#timer').removeClass('white');
+
   };
 
   if(seconds.length == 0){
@@ -40,6 +42,8 @@ $(document).ready(function() {
   $(".history").hide().delay(2500).fadeIn(1000);
   $(".question").hide().delay(2000).fadeIn(2000);
   $("#answer-eval").show(1000).fadeOut(1000);
+  $('#timer').addClass('white');
+
   result = $('#answer-eval').data("result");
   colorizer(result);
 

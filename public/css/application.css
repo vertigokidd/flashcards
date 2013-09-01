@@ -88,8 +88,11 @@ label {
   position: absolute;
   top: 90px;
   left: 700px;
-  color: white;
   font-size: 2em;
+}
+
+div .white{
+  color: white;
 }
 
 div .red{
